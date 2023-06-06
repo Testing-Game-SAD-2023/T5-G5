@@ -1,0 +1,33 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-box {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-box h1 {
+  margin-bottom: 0px;
+}
+
+.login-button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.register-button {
+  width: 100%;
+  margin-top: -185px;
+}
+button.login-button.btn.btn-primary {
+  width: 100%;
+  margin-top: 40px;
+}

@@ -1,0 +1,67 @@
+/* Stile generale per il body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  /* Stile per il contenitore principale */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
+  
+  /* Stile per il titolo */
+  h1 {
+    font-size: 28px;
+    margin-top: 0;
+    text-align: center;
+  }
+  
+  /* Stile per la lista di inviti */
+  ul.inviti {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Stile per ogni singolo invito */
+  .invito {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  /* Stile per il pulsante Accetta */
+  .btn-accetta {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .btn-accetta:hover {
+    background-color: #218838;
+  }
+  
+  /* Stile per il pulsante Rifiuta */
+  .btn-rifiuta {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .btn-rifiuta:hover {
+    background-color: #c82333;
+  }

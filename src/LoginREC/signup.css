@@ -1,0 +1,22 @@
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .signup-card {
+    width: 30rem;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.3);
+  }
+  
+  .signup-title {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .signup-submit-btn {
+  font-size: 1px;
+  padding: 1px 1px;
+}

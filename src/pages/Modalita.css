@@ -1,0 +1,126 @@
+/* Navbar */
+.navbar {
+    background-color: #007bff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+  .navbar-brand {
+    
+    color: #fff;
+    font-size: 24px;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-left: 50px; /* Aggiungi questa riga per spostare il titolo a destra */
+  }
+  
+  /* Container */
+  .container {
+    margin-top: 30px;
+  }
+  .col-md-4:first-child h4 {
+    margin-left: 115px; /* Aggiungi questa riga per spostare il titolo a destra */
+  }
+  /* Game mode */
+  .list-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .list-group-item {
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 200px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    background-color: #ddd;
+  }
+  
+  .list-group-item.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Num turns */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-check {
+    margin-bottom: 10px;
+  }
+  
+  .form-check-input {
+    margin-right: 5px;
+  }
+  
+  .form-check-label {
+    font-size: 18px;
+  }
+  
+  /* Start game button */
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 24px;
+    font-weight: bold;
+    width: 300px;
+    margin-top: 40px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0062cc;
+    border-color: #0062cc;
+  }
+
+  
+  .dropdown-menu {
+    right: 0px;
+   
+  }
+  
+  .dropdown-toggle {
+    margin-right: 0rem;
+  }
+
+  .navbar .dropdown-menu {
+    margin-left: -10px;
+  }
+ 
+  .dropdown-item {
+    color: white;
+  }
+  .dropdown-toggle .fa-user {
+    color: white;
+    
+  }
+  
+  .dropdown-toggle:last-child {
+    color:  white;
+    
+  }
+  .inviti-icon {
+    margin-top: 50px;
+  }
+
+  .navbar-text .dropdown-toggle {
+    margin-right: 0;
+  }
+  
+  .navbar-text .fa-user {
+    margin-left: 0.5rem;
+  }
+  
+  .navbar-text .user-email {
+    margin-left: 0.2rem;
+  }

@@ -1,0 +1,67 @@
+.custom-modal .modal-content {
+    border-radius: 10px;
+  }
+  
+  .custom-modal .modal-header {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .custom-modal .modal-title {
+    font-size: 24px;
+  }
+  
+  .custom-modal .modal-body {
+    padding: 20px;
+  }
+  
+  .custom-modal .modal-footer {
+    border-top: none;
+    padding: 15px 20px;
+  }
+  
+  .custom-modal .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .custom-modal .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+  
+  .custom-modal .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+  }
+  
+  .custom-modal .btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+  }
+  
+  .custom-modal .list-group-item {
+    cursor: pointer;
+  }
+  
+  .custom-modal .list-group-item.active {
+    background-color:#007bff;
+    color: #fff;
+  }
+ 
+  button.btn-danger {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #0d6efd;
+    --bs-btn-active-bg: #0d6efd;
+  }
+  button.btn-danger:hover {
+    background-color: #0d6efd;
+    --bs-btn-hover-border-color: #0d6efd;
+  }
+  
+  
+button.btn-danger:active {
+  --bs-btn-active-bg: #0d6efd;
+  --bs-btn-active-border-color: #0d6efd;
+}

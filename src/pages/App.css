@@ -1,0 +1,79 @@
+body {
+  font-size: 18px;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.main-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.list-group-item {
+  font-size: 1.2rem;
+}
+
+.list-group-item.active {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.list-group {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.list-group-item {
+  transition: all 0.3s ease-in-out;
+}
+
+.robot-selected {
+  background-color: #fdcb6e;
+  color: white;
+}
+.blue-circle {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: blue;
+}
+
+.multiplayer-indicator {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.confirm-button {
+  position: fixed;
+  bottom: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 25px;
+}
+
+body {
+  overflow: hidden;
+}

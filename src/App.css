@@ -1,0 +1,46 @@
+body {
+  font-size: 18px;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.main-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.list-group-item {
+  font-size: 1.2rem;
+}
+
+.list-group-item.active {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.list-group {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.list-group-item {
+  transition: all 0.3s ease-in-out;
+}
+
+.robot-selected {
+  background-color: #fdcb6e;
+  color: white;
+}
