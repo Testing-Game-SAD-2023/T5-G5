@@ -1,10 +1,14 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+## Installations and setup
+download node.js: https://nodejs.org/en/download
+in 'Node.js command prompt':
+### `npm install`
 ## Available Scripts
 
 In the project directory, you can run:
+
 ### `npm install react-scripts --save`
 ### `npm start`
 
