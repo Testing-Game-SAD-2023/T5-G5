@@ -15,7 +15,8 @@ in 'Node.js command prompt':
 
 In the project directory, you can run:
 
-### `npm install react-scripts --save`
+### `npm install react-scripts --save` 
+npm install deve essere eseguito solo una volta per installare tutte le dipendenze, dopodichè basterà npm start
 ### `npm start`
 
 Runs the app in the development mode.\
