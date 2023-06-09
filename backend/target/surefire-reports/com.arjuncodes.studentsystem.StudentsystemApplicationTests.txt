@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.arjuncodes.studentsystem.StudentsystemApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.296 s - in com.arjuncodes.studentsystem.StudentsystemApplicationTests
