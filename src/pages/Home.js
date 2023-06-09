@@ -11,6 +11,7 @@ import { faRobot, faCube, faCheck,faUser } from '@fortawesome/free-solid-svg-ico
 import { useNavigate } from 'react-router-dom';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
+import axios from 'axios';
 import './App.css';
 import Alert from 'react-bootstrap/Alert';
 
@@ -20,7 +21,8 @@ function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [inviteText, setInviteText] = useState('');
   const [showInviteModal, setShowInviteModal] = useState(false);
-  const [lastInvites, setLastInvites] = useState(['friend1', 'friend2', 'friend3']);
+  const [lastInvites, setLastInvites] = useState([]);
+  const uniqueFriends = Array.from(new Set(lastInvites));
   const robotListRef = useRef(null);
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -263,7 +265,7 @@ const memo=localStorage.getItem('recipientid');
   
     const inviteData = {
       game_id: selectgid, // varchar
-      sender_id: storedid, // varchar
+      senderid: storedid, // varchar
       recipientid: selectrec, // varchar
       accepted: "false"
     };
@@ -284,8 +286,9 @@ const memo=localStorage.getItem('recipientid');
   });
 
   };
+  
   const renderSuggestedFriends = () => {
-    const suggestedFriends = lastInvites.slice(0, 4);
+    const suggestedFriends = uniqueFriends.slice(0, 4);
     return (
       <List
         sx={{
@@ -313,19 +316,66 @@ const memo=localStorage.getItem('recipientid');
       </List>
     );
   };
+  useEffect(() => {
+    const storedId = localStorage.getItem('id');
+    fetch(`http://localhost:8080/invitations/${storedId}/recent`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("we",data);
+      setLastInvites(data);
 
+    })
+    .catch(error=> {
+      console.error('Error retrieving invitation data:', error);
+    });
+    
+  }, []);
+/*
   const classList = [
     { name: 'Classe 1', icon: faCube },
     { name: 'Classe 2', icon: faCube },
     { name: 'Classe 3', icon: faCube }
   ].filter((classItem) => {
     return classItem.name.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  });*/
+
+  const [classList, setClassList] = useState([]);
+  
+    
+  
+  useEffect(() => {
+    fetch('http://localhost:8090/classut_repo/viewAll')
+      .then(response => response.text())
+      .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+      .then(data => {
+        console.log("wewe",data);
+        const items = data.getElementsByTagName("item");
+        const newClassList = Array.from(items).map(item => {
+          const name = item.getAttribute("name");
+          return { name: name, icon: faCube };
+        }).filter(classItem => {
+          return classItem.name.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+
+        setClassList(newClassList);
+      });
+  }, [searchTerm]);
 
   const robotList = [
     { name: 'Randoop', icon: faRobot },
     { name: 'Evosuite', icon: faRobot }
   ];
+
+  if (!email) {
+    return (
+      <div>Accesso proibito. Esegui il login per accedere a questa pagina.</div>
+    );
+  }
 
   return (
     <div>

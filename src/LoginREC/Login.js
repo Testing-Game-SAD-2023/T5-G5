@@ -22,6 +22,7 @@ function Login() {
   
     axios.post('http://localhost:8080/player/login', values)
     .then(response => {
+      
       console.log(response.data);
       setError('');
       setValues({ email: '', password: '' });
@@ -31,9 +32,16 @@ function Login() {
     })
     .catch(error => {
       console.error(error);
-      setError('Email o password non valide');
+      const errorMessage = error.response.data;
+    if (errorMessage === 'Email not verified.') {
+      setError('Email not verified');
+    } else {
+      setError('Invalid username or password');
+    }
     });
   }
+  
+    
   
   
 

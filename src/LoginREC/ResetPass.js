@@ -1,8 +1,10 @@
 import React, { useState,useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function PasswordResetForm( ) {
+  const navigate = useNavigate();
     const location = useLocation();
     const token = new URLSearchParams(location.search).get('token');
     const [password, setPassword] = useState('');
@@ -36,12 +38,17 @@ function PasswordResetForm( ) {
       };
   
       fetch('http://localhost:8080/preset/reset', requestOptions)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Invalid or expired token');
-          }
+        .then((response) => response.text())
+          .then((data) => {
+            if (data === 'password-reset-error') {
+              
+              setErrorMessage('Token non valido');
+            }
+            else{
           setSuccessMessage('Password reset successful');
           setErrorMessage('');
+          navigate('/');
+            }
         })
         .catch((error) => {
           setErrorMessage(error.message);

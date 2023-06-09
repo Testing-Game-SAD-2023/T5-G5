@@ -11,7 +11,8 @@ function Signup() {
     name: '',
     surname: '',
     email: '',
-    password: ''
+    password: '',
+    courseofstudy:''
   });
 
   const handleInput = (event) => {
@@ -25,7 +26,8 @@ function Signup() {
       name: values.name,
       surname: values.surname,
       email: values.email,
-      password: values.password
+      password: values.password,
+      courseofstudy: values.courseofstudy
     };
 
     
@@ -85,6 +87,16 @@ function Signup() {
                       <div className="form-floating mb-4">
                         <input type="password" id="password" className="form-control" name="password" value={values.password} onChange={handleInput} required />
                         <label className="form-label" htmlFor="password">Password</label>
+                      </div>
+
+                      <div className="form-floating mb-4">
+                        <select id="courseofstudy" className="form-select" name="courseofstudy" value={values.courseofstudy} onChange={handleInput} required>
+                        <option value="">Seleziona un corso di studi</option>
+                        <option value="triennale">Triennale</option>
+                        <option value="magistrale">Magistrale</option>
+                        <option value="altro">Altro</option>
+                        </select>
+                         <label className="form-label" htmlFor="courseofstudy">Course of study</label>
                       </div>
 
                       <div className="form-check d-flex justify-content-center mb-5">

@@ -86,19 +86,49 @@ function Home() {
       console.log('json', gameData);
     });
   };
+  const [classList, setClassList] = useState([]);
   
+    
+  
+  useEffect(() => {
+    fetch('http://localhost:8090/classut_repo/viewAll')
+      .then(response => response.text())
+      .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+      .then(data => {
+        console.log("wewe",data);
+        const items = data.getElementsByTagName("item");
+        const newClassList = Array.from(items).map(item => {
+          const name = item.getAttribute("name");
+          return { name: name, icon: faCube };
+        }).filter(classItem => {
+          return classItem.name.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+
+        setClassList(newClassList);
+      });
+  }, [searchTerm]);
+
+  /*
+  //const [searchTerm, setSearchTerm] = useState('');
   const classList = [
+    
     { name: 'Classe 1', icon: faCube },
     { name: 'Classe 2', icon: faCube },
     { name: 'Classe 3', icon: faCube }
   ].filter((classItem) => {
     return classItem.name.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  });*/
 
   const robotList = [
     { name: 'Randoop', icon: faRobot },
     { name: 'Evosuite', icon: faRobot }
   ];
+
+  if (!email) {
+    return (
+      <div>Accesso proibito. Esegui il login per accedere a questa pagina.</div>
+    );
+  }
 
   return (
     <div>

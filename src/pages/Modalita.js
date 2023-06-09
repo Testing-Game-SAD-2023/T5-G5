@@ -66,7 +66,7 @@ useEffect(() => {
     .then(data => {
       console.log(data);
       const invitoid=data.map(invitation => invitation.id);
-      const ids = data.map(invitation => invitation.sender_id);
+      const ids = data.map(invitation => invitation.senderid);
       setSenderIds(ids);
       setInvitoIds(invitoid);
      
@@ -263,7 +263,7 @@ useEffect(() => {
     })
     .then(data => {
       const invitoid = data.map(invitation => invitation.id);
-      const ids = data.map(invitation => invitation.sender_id);
+      const ids = data.map(invitation => invitation.senderid);
       setSenderIds(ids);
       setInvitoIds(invitoid);
       setGameIds(data.map(invitation =>invitation.game_id));
@@ -273,9 +273,14 @@ useEffect(() => {
       console.error('Errore durante la cancellazione dell\'invito:', error);
     });
   }
- 
+  if (!userEmail) {
+    return (
+      <div>Accesso proibito. Esegui il login per accedere a questa pagina.</div>
+    );
+  }
 
   return (
+   
     <>
       <Navbar bg="primary" variant="dark">
         <Navbar.Brand href="#">Configura nuova partita</Navbar.Brand>

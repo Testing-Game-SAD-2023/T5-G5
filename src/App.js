@@ -17,7 +17,7 @@ function App() {
       <Router>
         <Routes>
           
-          <Route path="/about2" element={<Barra />} />
+          <Route path="/about" element={<Barra />} />
           <Route path="/mod" element={<Modalita />} />
           <Route path="/Signup" element={<Sign />} />
           <Route path="/Multi" element={<Home />} />
@@ -28,7 +28,7 @@ function App() {
           <Route path="/via" element={<PasswordResetReq />} />
           <Route path="/password-reset/reset" element={<PasswordResetForm />} />
           
-          <Route path="/about" element={<OtherApp />} />
+          <Route path="/about2" element={<OtherApp />} />
         </Routes>
       </Router>
     </div>
