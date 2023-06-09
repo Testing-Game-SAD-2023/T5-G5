@@ -1,7 +1,9 @@
 # Guida backend
-Aprire la cartella backend in un IDE come Intellij IDEA e runnare StudentsystemApplication
-
-
+Aprire la cartella backend in un IDE come Intellij IDEA e runnare StudentsystemApplication 
+OR
+Da cmd
+### ` cd backend/target`
+### `java -jar studentsystem-0.0.1-SNAPSHOT.jar`
 
 
 # Getting Started with Create React App
