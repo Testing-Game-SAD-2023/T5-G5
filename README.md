@@ -4,6 +4,8 @@ OR
 Da cmd
 ### ` cd backend`
 ###  `./mvnw install`
+### In caso di errore Error: JAVA_HOME not found in your environment. Please set the JAVA_HOME variable in your environment to match the location of your Java installation.
+### `JAVA_HOME = C:\Program Files\Java\jdk(JDK version number)`  then restart cmd
 ### ` cd target`
 ### `java -jar studentsystem-0.0.1-SNAPSHOT.jar`
 
