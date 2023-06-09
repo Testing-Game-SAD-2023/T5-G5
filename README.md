@@ -1,3 +1,9 @@
+# Guida backend
+Aprire la cartella backend in un IDE come Intellij IDEA e runnare StudentsystemApplication
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
