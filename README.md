@@ -2,7 +2,9 @@
 Aprire la cartella backend in un IDE come Intellij IDEA e runnare StudentsystemApplication 
 OR
 Da cmd
-### ` cd backend/target`
+### ` cd backend`
+###  `./mvnw install`
+### ` cd target`
 ### `java -jar studentsystem-0.0.1-SNAPSHOT.jar`
 
 
