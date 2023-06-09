@@ -14,5 +14,6 @@ public interface InvitationService {
     public Optional<Invitation> getInvitationById(int id);
 
     public List<Invitation> getByRecipientidAndAccepted(int recipientid, boolean accepted) ;
+    public List<Invitation> getInvitationsBySenderId(int sender_id);
 
 }

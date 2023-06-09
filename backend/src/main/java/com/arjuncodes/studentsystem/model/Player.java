@@ -12,8 +12,28 @@ public class Player {
     private int id;
     private String name;
     private String surname;
+    private String courseofstudy;
     private String email;
     private String password;
+    private boolean isEmailVerified;
+    private String token;
+
+    public boolean isEmailVerified() {
+        return isEmailVerified;
+    }
+
+    public void setEmailVerified(boolean emailVerified) {
+        isEmailVerified = emailVerified;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public Player() {
     }
 
@@ -56,5 +76,12 @@ public class Player {
         this.password = password;
     }
 
+    public String getCourseofstudy() {
+        return courseofstudy;
+    }
+
+    public void setCourseofstudy(String courseofstudy) {
+        this.courseofstudy = courseofstudy;
+    }
 
 }

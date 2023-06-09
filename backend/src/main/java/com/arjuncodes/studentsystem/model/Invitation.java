@@ -8,7 +8,8 @@ public class Invitation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int game_id;
-    private int sender_id;
+
+    private int senderid;
 
 
     private int recipientid;
@@ -33,12 +34,12 @@ public class Invitation {
         this.game_id = game_id;
     }
 
-    public int getSender_id() {
-        return sender_id;
+    public int getSenderid() {
+        return senderid;
     }
 
-    public void setSender_id(int sender_id) {
-        this.sender_id = sender_id;
+    public void setSenderid(int senderid) {
+        this.senderid = senderid;
     }
 
     public int getRecipientid() {

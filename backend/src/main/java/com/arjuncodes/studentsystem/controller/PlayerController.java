@@ -30,9 +30,38 @@ public class PlayerController {
         if(existingPlayer != null) {
             return "Email già presente";
         }
-
+        String token = UUID.randomUUID().toString();
+        player.setToken(token);
         playerService.savePlayer(player);
-        return "Nuovo giocatore aggiunto";
+        String subject = "Conferma email per il tuo account";
+        String message = "Ciao " + player.getName() + ",\n\nClicca sul link seguente per confermare la tua email: http://localhost:8080/player/confirm?email=" + player.getEmail() + "&token=" + token;
+        boolean sent = sendEmail(player.getEmail(), subject, message);
+
+        if (sent) {
+            return "Nuovo giocatore aggiunto";
+        } else {
+            return "Errore durante l'invio dell'email di conferma. Riprova più tardi.";
+        }
+
+    }
+    //conferma
+    @GetMapping("/confirm")
+    public ResponseEntity<String> confirmEmail(@RequestParam("email") String email, @RequestParam("token") String token) {
+        Player player = playerService.findPlayerByEmail(email);
+
+        if (player == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Player not found");
+        }
+
+        if (player.getToken() == null || !player.getToken().equals(token)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid token");
+        }
+
+        player.setToken(null);
+        player.setEmailVerified(true);
+        playerService.savePlayer(player);
+
+        return ResponseEntity.ok("Email confirmed successfully");
     }
 
     @GetMapping("/getAll")
@@ -44,6 +73,10 @@ public class PlayerController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Player player) {
+        Player existingPlayer = playerService.findPlayerByEmail(player.getEmail());
+        if (!existingPlayer.isEmailVerified()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Email not verified.");
+        }
         if (playerService.authenticate(player.getEmail(), player.getPassword())) {
             String response =   player.getEmail();
             return ResponseEntity.ok(response);

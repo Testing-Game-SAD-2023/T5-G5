@@ -1,7 +1,9 @@
 package com.arjuncodes.studentsystem.controller;
 
 import com.arjuncodes.studentsystem.model.Invitation;
+import com.arjuncodes.studentsystem.model.Player;
 import com.arjuncodes.studentsystem.service.InvitationService;
+import com.arjuncodes.studentsystem.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,8 @@ import java.util.*;
 public class InvitationController {
     @Autowired
     private InvitationService invitationService;
-
+    @Autowired
+    private PlayerService playerService;
     @PostMapping("/add")
     public String add(@RequestBody Invitation invitation) {
         invitationService.saveInvitation(invitation);
@@ -49,7 +52,7 @@ public class InvitationController {
         for (Invitation invite : invitations) {
             Map<String, Object> inviteDetails = new HashMap<>();
             inviteDetails.put("id", invite.getId());
-            inviteDetails.put("sender_id", invite.getSender_id());
+            inviteDetails.put("senderid", invite.getSenderid());
 
             inviteDetails.put("recipientid", invite.getRecipientid());
 
@@ -137,4 +140,31 @@ public class InvitationController {
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/{senderId}/recent")
+    public ResponseEntity<List<String>> getRecentInvitationsBySender(@PathVariable int senderId) {
+        List<Invitation> invitations = invitationService.getInvitationsBySenderId(senderId);
+        if (invitations.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        // ordina gli inviti in ordine decrescente in base all'id
+        invitations.sort(Comparator.comparing(Invitation::getId).reversed());
+
+        Set<String> uniqueEmails = new HashSet<>();
+        List<String> recentInvitations = new ArrayList<>();
+        for (int i = 0; i < Math.min(invitations.size(), 4); i++) {
+            Invitation invitation = invitations.get(i);
+
+            int recipientId = invitation.getRecipientid();
+            Player recipient = playerService.getPlayerById(recipientId);
+
+            String recipientEmail = recipient.getEmail();
+            if (uniqueEmails.add(recipientEmail)) {
+                recentInvitations.add(recipientEmail);
+            }
+        }
+
+        return new ResponseEntity<>(recentInvitations, HttpStatus.OK);
+    }
+
 }

@@ -13,7 +13,7 @@ public interface PlayerService {
 
     Player getPlayerByEmail(String email);
 
-    Player getPlayerById(int id);
+    public Player getPlayerById(int id);
 
     void deletePlayerById(int id);
     public Player findPlayerByEmail(String email);

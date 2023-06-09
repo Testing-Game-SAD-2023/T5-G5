@@ -47,4 +47,13 @@ public class InvitationServiceImpl implements InvitationService {
         return invitationRepository.findByRecipientidAndAccepted(recipientid, accepted);
     }
 
+
+    //aggiunta
+
+
+
+        public List<Invitation> getInvitationsBySenderId(int senderid) {
+            return invitationRepository.findBySenderidOrderByIdDesc(senderid);
+
+    }
 }
