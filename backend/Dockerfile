@@ -4,8 +4,7 @@ WORKDIR /app
 # Copia il file JSON delle credenziali nell'immagine Docker
 
 
-# Imposta la variabile di ambiente per le credenziali di Google Cloud Storage
-ENV GOOGLE_APPLICATION_CREDENTIALS=/app/sadtest-26b1ddccaa16.json
+
 COPY pom.xml .
 
 RUN mvn dependency:go-offline
