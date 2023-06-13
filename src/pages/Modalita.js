@@ -27,7 +27,7 @@ function Modalita() {
   const [emails, setEmails] = useState([]);
 
   const [userData, setUserData] = useState({});
-  
+  /*
   useEffect(() => {
     const storedEmail = localStorage.getItem('email');
     const storedId = localStorage.getItem('id');
@@ -51,8 +51,77 @@ function Modalita() {
       });
     }
   }, []);
-
-
+  */
+  useEffect(() => {
+    const storedEmail = localStorage.getItem('email');
+    const storedId = localStorage.getItem('id');
+    const storedName = localStorage.getItem('name');
+    if (storedEmail && !userData.id) {
+      fetch(`http://localhost:8080/player/email/${storedEmail}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          localStorage.setItem('id', data.id_player);
+          localStorage.setItem('name', data.name);
+          setUserData(data);
+  
+          // esegui la chiamata API per recuperare gli inviti
+          fetch(`http://localhost:8080/invitations/recuperoinviti/${data.id_player}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.json();
+            })
+            .then(data => {
+              console.log(data);
+              const invitoid = data.map(invitation => invitation.id);
+              const ids = data.map(invitation => invitation.senderid);
+              setSenderIds(ids);
+              setInvitoIds(invitoid);
+              setGameIds(data.map(invitation => invitation.game_id));
+              setIsLoading(false);
+            })
+            .catch(error => {
+              console.error('Error retrieving invitation data:', error);
+              setError(error);
+              setIsLoading(false);
+            });
+        })
+        .catch(error => {
+          console.error('Error retrieving user data:', error);
+        });
+    } else {
+      setUserData({
+        id_player: storedId,
+        name: storedName,
+      });
+  
+      // esegui la chiamata API per recuperare gli inviti
+      fetch(`http://localhost:8080/invitations/recuperoinviti/${storedId}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          const invitoid = data.map(invitation => invitation.id);
+          const ids = data.map(invitation => invitation.senderid);
+          setSenderIds(ids);
+          setInvitoIds(invitoid);
+          setGameIds(data.map(invitation => invitation.game_id));
+          setIsLoading(false);
+        })
+        .catch(error => {
+          console.error('Error retrieving invitation data:', error);
+          setError(error);
+          setIsLoading(false);
+        });
+    }
+  }, []);
+ /*
 useEffect(() => {
   const storedId = localStorage.getItem('id');
   fetch(`http://localhost:8080/invitations/recuperoinviti/${storedId}`)
@@ -80,12 +149,14 @@ useEffect(() => {
       setIsLoading(false);
     });
 }, []);
+*/
   const handleNumTurnsSelect = (num) => {
     setNumTurns(num);
     localStorage.setItem('numTurns', num);
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('id');
     localStorage.removeItem('email');
     localStorage.removeItem('token');
     navigate('/');
