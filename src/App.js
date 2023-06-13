@@ -1,7 +1,7 @@
 import "./pages/App.css";
 import React from 'react'
 import  { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/Multi";
 import Barra from "./pages/Barra";
 import Modalita from "./pages/Modalita";
 import Prova from "./LoginREC/Login";

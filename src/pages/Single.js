@@ -12,6 +12,7 @@ import './Home.css';
 function Home() {
   const [selectedClass, setSelectedClass] = useState('');
   const [selectedRobot, setSelectedRobot] = useState('');
+
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const robotListRef = useRef(null);
@@ -45,6 +46,8 @@ function Home() {
 
   const handleClassSelect = (className) => {
     setSelectedClass(className);
+    localStorage.setItem('selectedClass', className);
+    //window.location.href = "http://localhost:8190/myapp?myParam=" + encodeURIComponent(className);
   };
 
   const handleLogout = () => {
@@ -86,10 +89,11 @@ function Home() {
       console.log('json', gameData);
     });
   };
-  const [classList, setClassList] = useState([]);
+  //const [classList, setClassList] = useState([]); decommentare
   
     
-  
+  /*
+  integrazione t1-g20
   useEffect(() => {
     fetch('http://localhost:8090/classut_repo/viewAll')
       .then(response => response.text())
@@ -107,8 +111,28 @@ function Home() {
         setClassList(newClassList);
       });
   }, [searchTerm]);
+*/
+/*servequesto
+useEffect(() => {
+  fetch('http://localhost:8090/classut_repo')
+    .then(response => response.text())
+    //.then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+    .then(data => {
+      console.log("wewe",data);
 
-  /*
+      data = data.replace("[", "").replace("]", "").replace(/"/g, "");
+      const newClassList = data.split(",").map(name =>  {
+        
+        return { name: name, icon: faCube };
+      }).filter(classItem => {
+        return classItem.name.toLowerCase().includes(searchTerm.toLowerCase());
+      });
+
+      setClassList(newClassList);
+    });
+}, [searchTerm]);
+*/
+  
   //const [searchTerm, setSearchTerm] = useState('');
   const classList = [
     
@@ -117,7 +141,7 @@ function Home() {
     { name: 'Classe 3', icon: faCube }
   ].filter((classItem) => {
     return classItem.name.toLowerCase().includes(searchTerm.toLowerCase());
-  });*/
+  });
 
   const robotList = [
     { name: 'Randoop', icon: faRobot },
