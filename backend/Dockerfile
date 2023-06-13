@@ -1,8 +1,23 @@
-# Usa un'immagine di base Java 11
+FROM maven:3.8.3-jdk-11-slim AS build
+
+WORKDIR /app
+# Copia il file JSON delle credenziali nell'immagine Docker
+
+
+# Imposta la variabile di ambiente per le credenziali di Google Cloud Storage
+ENV GOOGLE_APPLICATION_CREDENTIALS=/app/sadtest-26b1ddccaa16.json
+COPY pom.xml .
+
+RUN mvn dependency:go-offline
+
+COPY src ./src
+
+RUN mvn package -DskipTests
+
 FROM openjdk:11-jdk-slim
 
-# Copia il file jar dell'applicazione Spring Boot nella directory /app
-ADD target/*.jar app.jar
+WORKDIR /app
 
-# Imposta il comando di avvio dell'applicazione Spring Boot
+COPY --from=build /app/target/*.jar app.jar
+
 ENTRYPOINT ["java","-jar","app.jar"]

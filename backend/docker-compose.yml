@@ -11,13 +11,5 @@ services:
       SPRING_DATASOURCE_USERNAME: b58456b8d755e1
       SPRING_DATASOURCE_PASSWORD: 3547a3b0
 
-    depends_on:
-      - mysqldb
-  mysqldb:
-    container_name: mysqldb
-    image: mysql
-    volumes:
-      -  /home/user/Desktop/db:/var/lib/mysql
-    ports:
-      - 3306:3306
+
 
