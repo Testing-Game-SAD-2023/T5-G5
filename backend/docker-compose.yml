@@ -24,7 +24,7 @@ services:
 
   springboot-app:
 
-    restart: always
+    
     build: .
     ports:
       - 8080:8080
