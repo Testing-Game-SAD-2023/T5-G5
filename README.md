@@ -32,10 +32,11 @@ Per eseguire la GUI su una porta diversa dalla 3000 utilizzare il primo docker-c
 
 ## Additional Information
 ### Il frontend è in esecuzione su http://localhost:3000
-### Su http://localhost:9000 è presente un adminer per gestione database, le tabelle vengono memorizzate in db:mysql
+### Su http://localhost:9000 è presente un adminer per gestione database, per accedervi:
 ### Utente: root 
 ### Password: rootpassword
-##
+### I dati vengono inseriti sul database mysql
+## 
 <p align="left">
 </p>
 
