@@ -1,5 +1,5 @@
 # Guida Installazione su docker
-git clone del repo
+###git clone del repo
 spostarsi nel path del repo
 eseguire 
 ### docker-build -t G5-T5-front .
