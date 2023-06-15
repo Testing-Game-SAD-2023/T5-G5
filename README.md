@@ -22,10 +22,7 @@ cd backend
 ```
  
 ### Nel caso spring desse errore stoppare con ctrl+c e rieseguire docker-compose up
-### Andare su http://localhost:3000 per vedere la GUI
-### Andare su http://localhost:9000 per gestione database, le tabelle vengono memorizzate in db:mysql
-### Utente: root 
-### Password: rootpassword
+
 
 ## FAQ
 
@@ -33,6 +30,12 @@ cd backend
 
 Per eseguire la GUI su una porta diversa dalla 3000 utilizzare il primo docker-compose.yml presente nel path T5-G5 e in ports cambiare il primo 3000 con la porta desiderata
 
+## Additional Information
+### Il frontend è in esecuzione su http://localhost:3000
+### Su http://localhost:9000 è presente un adminer per gestione database, le tabelle vengono memorizzate in db:mysql
+### Utente: root 
+### Password: rootpassword
+##
 <p align="left">
 </p>
 
