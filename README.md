@@ -11,7 +11,7 @@
 ### Nel caso spring desse errore stoppare con ctrl+c e rieseguire docker-compose up
 ### Andare su http://localhost:3000 per vedere la GUI
 
-### Andare su http://localhost:9000 per gestione database, le tabelle vengono memorizzate in db
+### Andare su http://localhost:9000 per gestione database, le tabelle vengono memorizzate in db:mysql
 ### Utente: root 
 ### Password: rootpassword
 
