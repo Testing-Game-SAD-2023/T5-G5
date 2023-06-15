@@ -33,9 +33,9 @@ cd backend
 
 ## FAQ
 
-#### Come si può cambiare la porta in cui viene eseguito react? 1
+#### Come si può cambiare la porta in cui viene eseguito react? 
 
-Per eseguire la GUI su una porta diversa dalla 3000 utilizzare il docker-compose.yml e in ports cambiare 3000 con la porta desiderata
+Per eseguire la GUI su una porta diversa dalla 3000 utilizzare il primo docker-compose.yml presente nel path T5-G5 e in ports cambiare 3000 con la porta desiderata
 
 
 
