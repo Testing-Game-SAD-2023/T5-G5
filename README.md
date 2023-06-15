@@ -8,14 +8,12 @@ Dopo
 ### cd backend
 ### docker build -t back .
 ### docker-compose up
-### Andare su http://localhost:9000 e accedere con
+### Nel caso spring desse errore stoppare con ctrl+c e rieseguire docker-compose up
+### Andare su http://localhost:3000 per vedere la GUI
+
+### Andare su http://localhost:9000 per gestione database, le tabelle vengono memorizzate in db
 ### Utente: root 
 ### Password: rootpassword
-### creare un database di nome sadfinal
-### rieseguire docker-compose up
-### Andare su http://localhost:3000
-
-
 
 
 
