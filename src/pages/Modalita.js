@@ -10,6 +10,13 @@ function Modalita() {
   const [numTurns, setNumTurns] = useState('');
   const [showInvites, setShowInvites] = useState(false); // Stato per il modale degli inviti ricevuti
   const navigate = useNavigate();
+  // Recupera i valori memorizzati nel LocalStorage
+const gamee = localStorage.getItem('gameId');
+const invito = localStorage.getItem('inviteId');
+
+// Stampa i valori nel LocalStorage
+console.log('Valore di gameId nel LocalStorage:', gamee);
+console.log('Valore di inviteId nel LocalStorage:', invito);
 
   const handleGameModeSelect = (mode) => {
     setGameMode(mode);
@@ -240,7 +247,14 @@ useEffect(() => {
 
 
   
+  //console.log("cisei",scu);
+
   function handleConfirmEmail(gameId,inviteId) {
+    localStorage.setItem('gameId', gameId);
+    localStorage.setItem('inviteId', inviteId);
+    console.log('Valore di gameId nel LocalStorage:', localStorage.getItem('gameId'));
+  console.log('Valore di inviteId nel LocalStorage:', localStorage.getItem('inviteId'));
+        
     fetch(`http://localhost:8080/game/${gameId}`)
     .then(response => {
       if (!response.ok) {
@@ -269,6 +283,7 @@ useEffect(() => {
           throw new Error('Network response was not ok');
         }
         console.log('Invito accettato con successo.');
+        
       })
       .catch(error => {
         console.error('Errore durante l\'accettazione dell\'invito:', error);
@@ -286,7 +301,7 @@ useEffect(() => {
       })
       .then(data => {
         console.log('Dati del gioco inviati al server:', data);
-       navigate('/about');
+       navigate('/join');
       })
       .catch(error => {
         console.error('Errore durante la chiamata API per aggiungere il gioco:', error);

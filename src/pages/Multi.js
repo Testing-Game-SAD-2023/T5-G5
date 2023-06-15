@@ -83,6 +83,7 @@ function Home() {
 
 
   const handleLogout = () => {
+    localStorage.removeItem('id');
     localStorage.removeItem('email');
     localStorage.removeItem('token');
     navigate('/');
