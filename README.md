@@ -6,7 +6,7 @@ eseguire
 ### docker-compose up
 Dopo
 ### cd backend
-### docker-build -t G5-T5-back
+### docker build -t back .
 ### docker-compose up
 ### Andare su http://localhost:9000 e accedere con
 ### Utente: root 
