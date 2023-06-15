@@ -1,10 +1,10 @@
 # Guida Installazione su docker
 ### git clone https://github.com/Testing-Game-SAD-2023/T5-G5.git
-spostarsi nel path del repo
-eseguire 
+### aprire terminale e spostarsi nel path del repo con cd aggiungendo il percorso della cartella
+### eseguire in cmd
 ### docker build -t front .
 ### docker-compose up
-Dopo
+### Infine
 ### cd backend
 ### docker build -t back .
 ### docker-compose up
