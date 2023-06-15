@@ -8,11 +8,12 @@ Dopo
 ### cd backend
 ### docker-build -t G5-T5-back
 ### docker-compose up
-### Andare su http://localhost:9000
-### Utente root -
-### Password rootpassword
+### Andare su http://localhost:9000 e accedere con
+### Utente: root 
+### Password: rootpassword
 ### creare un database di nome sadfinal
 ### rieseguire docker-compose up
+### Andare su http://localhost:3000
 
 ###
 Aprire la cartella backend in un IDE come Intellij IDEA e runnare StudentsystemApplication 
