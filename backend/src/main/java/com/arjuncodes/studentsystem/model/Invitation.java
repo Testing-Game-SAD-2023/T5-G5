@@ -15,6 +15,17 @@ public class Invitation {
     private int recipientid;
 
     private boolean accepted;
+
+    private boolean onpage;
+
+    public boolean isOnpage() {
+        return onpage;
+    }
+
+    public void setOnpage(boolean onpage) {
+        this.onpage = onpage;
+    }
+
     public Invitation() {
     }
 

@@ -99,7 +99,7 @@ public class InvitationController {
         }
     }
 
-//solo questo uso
+    //solo questo uso
     @DeleteMapping("/delete/{inviteId}")
     public ResponseEntity<Map<String, Object>> deleteInvite(@PathVariable int inviteId) {
         Optional<Invitation> invite = invitationService.getInvitationById(inviteId);
@@ -166,5 +166,72 @@ public class InvitationController {
 
         return new ResponseEntity<>(recentInvitations, HttpStatus.OK);
     }
+    //not good
+    @PutMapping("/{senderId}/on")
+    public ResponseEntity<Map<String, Object>> setOnPage(@PathVariable int senderId, @RequestParam(required = false) Boolean onpage) {
+        boolean onpageValue = onpage != null ? onpage : true;
+        List<Invitation> invitations = invitationService.getInvitationsBySenderId(senderId);
+        for (Invitation invitation : invitations) {
+            invitation.setOnpage(onpageValue);
+            invitationService.saveInvitation(invitation);
+        }
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "onpage has been set for invitations with senderId " + senderId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PutMapping("/{invitationId}/onbyid")
+    public ResponseEntity<Map<String, Object>> setOnPage3(@PathVariable int invitationId, @RequestParam(required = false) Boolean onpage) {
+        boolean onpageValue = onpage != null ? onpage : true;
+        Invitation invitation = invitationService.getInvitationById(invitationId).orElseThrow(() -> new NoSuchElementException("Invitation not found"));
+        invitation.setOnpage(onpageValue);
+        invitationService.saveInvitation(invitation);
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "onpage has been set for invitation with ID " + invitationId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PutMapping("/{invitationId}/offbyid")
+    public ResponseEntity<Map<String, Object>> setOnPage4(@PathVariable int invitationId, @RequestParam(required = false) Boolean onpage) {
+        boolean onpageValue = onpage != null ? onpage : false;
+        Invitation invitation = invitationService.getInvitationById(invitationId).orElseThrow(() -> new NoSuchElementException("Invitation not found"));
+        invitation.setOnpage(onpageValue);
+        invitationService.saveInvitation(invitation);
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "onpage has been set for invitation with ID " + invitationId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    //notgood
+    @PutMapping("/{senderId}/off")
+    public ResponseEntity<Map<String, Object>> setOnPage2(@PathVariable int senderId, @RequestParam(required = false) Boolean onpage) {
+        boolean onpageValue = onpage != null ? onpage : false;
+        List<Invitation> invitations = invitationService.getInvitationsBySenderId(senderId);
+        for (Invitation invitation : invitations) {
+            invitation.setOnpage(onpageValue);
+            invitationService.saveInvitation(invitation);
+        }
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "onpage has been set for invitations with senderId " + senderId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    //notgood
+    @GetMapping("/invitations/{invitationId}/onpage")
+    public ResponseEntity<Map<String, Object>> checkOnPageStatus(@PathVariable int invitationId) {
+        Invitation invitation = invitationService.getInvitationById(invitationId).orElseThrow(() -> new NoSuchElementException("Invitation not found"));
+        int senderId = invitation.getSenderid();
+        boolean onpage = invitationService.getOnPageStatusBySenderId(senderId);
+        Map<String, Object> response = new HashMap<>();
+        response.put("senderId", senderId);
+        response.put("onpage", onpage);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @GetMapping("/invitations/{invitationId}/onpagebyid")
+    public ResponseEntity<Map<String, Object>> checkOnPageStatus2(@PathVariable int invitationId) {
+        Invitation invitation = invitationService.getInvitationById(invitationId).orElseThrow(() -> new NoSuchElementException("Invitation not found"));
+        boolean onpage = invitation.isOnpage();
+        Map<String, Object> response = new HashMap<>();
+        response.put("invitationId", invitationId);
+        response.put("onpage", onpage);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 
 }

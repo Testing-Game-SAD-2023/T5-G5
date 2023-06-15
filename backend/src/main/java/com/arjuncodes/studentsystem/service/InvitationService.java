@@ -15,5 +15,6 @@ public interface InvitationService {
 
     public List<Invitation> getByRecipientidAndAccepted(int recipientid, boolean accepted) ;
     public List<Invitation> getInvitationsBySenderId(int sender_id);
+    public boolean getOnPageStatusBySenderId(int senderId);
 
 }

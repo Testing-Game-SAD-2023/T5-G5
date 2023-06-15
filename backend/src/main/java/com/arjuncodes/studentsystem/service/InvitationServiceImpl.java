@@ -19,6 +19,11 @@ public class InvitationServiceImpl implements InvitationService {
 
     @Override
     public Invitation saveInvitation(Invitation invitation) {
+
+
+
+
+
         return invitationRepository.save(invitation);
     }
     @Override
@@ -55,5 +60,15 @@ public class InvitationServiceImpl implements InvitationService {
         public List<Invitation> getInvitationsBySenderId(int senderid) {
             return invitationRepository.findBySenderidOrderByIdDesc(senderid);
 
+    }
+
+    public boolean getOnPageStatusBySenderId(int senderId) {
+        List<Invitation> invitations = getInvitationsBySenderId(senderId);
+        for (Invitation invitation : invitations) {
+            if (invitation.isOnpage()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
