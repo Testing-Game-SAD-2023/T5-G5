@@ -9,7 +9,13 @@
 
 
 
+
+```bash
 ### git clone https://github.com/Testing-Game-SAD-2023/T5-G5.git
+```
+
+
+
 ### aprire terminale e spostarsi nel path del repo con cd aggiungendo il percorso della cartella
 ### eseguire in cmd
 ### docker build -t front .
