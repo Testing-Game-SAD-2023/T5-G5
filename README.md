@@ -15,7 +15,14 @@ Dopo
 ### rieseguire docker-compose up
 ### Andare su http://localhost:3000
 
-###
+
+
+
+
+
+
+
+### Vecchio Manuale Instalazione
 Aprire la cartella backend in un IDE come Intellij IDEA e runnare StudentsystemApplication 
 OR
 Da cmd
@@ -27,14 +34,19 @@ Da cmd
 ### `java -jar studentsystem-0.0.1-SNAPSHOT.jar`
 
 
+
+
+
+
+
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 ## Installations and setup
 download node.js: https://nodejs.org/en/download
 in 'Node.js command prompt':
 ### `npm install`
-## Available Scripts
+
 
 In the project directory, you can run:
 
@@ -48,14 +60,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-
-
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
 
