@@ -1,4 +1,20 @@
-# Guida backend
+# Guida Installazione su docker
+git clone del repo
+spostarsi nel path del repo
+eseguire 
+### docker-build -t G5-T5-front .
+### docker-compose up
+Dopo
+### cd backend
+### docker-build -t G5-T5-back
+### docker-compose up
+### Andare su http://localhost:9000
+### Utente root -
+### Password rootpassword
+### creare un database di nome sadfinal
+### rieseguire docker-compose up
+
+###
 Aprire la cartella backend in un IDE come Intellij IDEA e runnare StudentsystemApplication 
 OR
 Da cmd
