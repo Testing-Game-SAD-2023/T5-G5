@@ -11,12 +11,15 @@ import Prima from "./Attesa/Attesa";
 import PasswordResetForm from "./LoginREC/ResetPass";
 import PasswordResetReq from "./LoginREC/PasswordResetLink";
 import OtherApp from "./Editor/Editor";
+import Testare from "./Blocco";
+import Joinare from "./join";
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          
+        <Route path="/join" element={<Joinare />} />
+        <Route path="/controllo" element={<Testare />} />
           <Route path="/about" element={<Barra />} />
           <Route path="/mod" element={<Modalita />} />
           <Route path="/Signup" element={<Sign />} />
