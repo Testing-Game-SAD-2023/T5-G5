@@ -23,6 +23,10 @@ cd backend
  
 ### Nel caso spring desse errore stoppare con ctrl+c e rieseguire docker-compose up
 
+## :video_camera: Video Demo della Web Application
+Si mostrano tutte le funzionalità implementate nella web application, dallo svolgimento del test fino alla gestione delle farmacie aderenti al sistema.
+
+file.mp4
 
 ## FAQ
 
