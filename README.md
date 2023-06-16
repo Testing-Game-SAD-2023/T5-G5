@@ -1,7 +1,7 @@
 <h1 align="left"> Guida Installazione su docker</h1>
 
 
-## Requisiti
+## :file_folder: Requisiti
 1. Installare Docker
 2. Installare WSL
 3. Avviare Docker
@@ -12,19 +12,19 @@
 git clone https://github.com/Testing-Game-SAD-2023/T5-G5.git
 ```
 
-### Aprire terminale e spostarsi nel path del repo con cd aggiungendo il percorso della cartella, eseguire in cmd
+#### Aprire terminale e spostarsi nel path del repo con cd aggiungendo il percorso della cartella, eseguire in cmd
 ```bash
  docker build -t front .
  docker-compose up
 ```
-### Successivamente in un secondo terminale
+#### Successivamente in un secondo terminale
 ```bash
 cd backend
  docker build -t back .
  docker-compose up
 ```
  
-### Nel caso spring desse errore stoppare con ctrl+c e rieseguire docker-compose up
+#### Nel caso spring desse errore stoppare con ctrl+c e rieseguire docker-compose up
 
 ## :bookmark_tabs: La Documentazione
 E' possibile consultare la completa documentazione al seguente link <a title="Link al documento" href="link.pdf">
@@ -35,17 +35,17 @@ https://github.com/Testing-Game-SAD-2023/T5-G5/assets/127510084/a9aa3b21-af95-42
 
 
 
-## FAQ
+## :grey_question: FAQ
 
 #### Come si può cambiare la porta in cui viene eseguito il progetto in react? 
 
 Per eseguire la GUI su una porta diversa dalla 3000 modificare il primo docker-compose.yml presente nel path T5-G5 e in ports cambiare il primo 3000 con la porta desiderata
 
-## Additional Information
+## :heavy_plus_sign: Additional Information
 1. Il frontend è in esecuzione su http://localhost:3000
 2. Su http://localhost:9000 è presente un adminer per gestione database, per accedervi:
-### Utente: root 
-### Password: rootpassword
+#### Utente: root 
+#### Password: rootpassword
 3. I dati vengono inseriti sul database mysql
 ## Integrazione
 - T6-G16: Ambiente di Editing
