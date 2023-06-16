@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PlayerRepository extends JpaRepository<Player,Integer> {
     Player findByEmail(String email);
+
+    Player findBySessionId(String sessionId);
 }
