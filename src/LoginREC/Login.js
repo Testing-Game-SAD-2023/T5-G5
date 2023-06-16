@@ -3,6 +3,13 @@ import axios from 'axios';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Link, Navigate } from 'react-router-dom';
 import './Login.css';
+import Cookies from 'js-cookie';
+
+
+// Crea un'istanza di CookieJar
+
+// Abilita la gestione dei cookie in axios
+
 
 
 function Login() {
@@ -17,29 +24,53 @@ function Login() {
     setValues(prev => ({...prev, [event.target.name]: event.target.value}))
   }
 
+  
+    
   const handleSubmit = (event) => {
     event.preventDefault();
   
-    axios.post('http://localhost:8080/player/login', values)
+    axios.post('http://localhost:8080/player/login22', values)
     .then(response => {
+      //const sessionId = response.headers['set-cookie'][0].match(/sessionId=([^;]+)/)[1];
+     
+      const { sessionId, email } = response.data;
       
+     
+    //console.log("prova",sessionId);
       console.log(response.data);
       setError('');
       setValues({ email: '', password: '' });
       setLoggedIn(true);
+      //Cookies.set('sessionId', response.data.sessionId, { expires: new Date(response.data.sessionExpiry) });
+     
+      
       //localStorage.setItem('userId', response.data.userId); 
-      localStorage.setItem('email', response.data); // Salva l'email dell'utente in localStorage
+      localStorage.setItem('email', email); // Salva l'email dell'utente in localStorage
+      localStorage.setItem('sessionId', sessionId); // Salva l'ID della sessione in localStorage
+      console.log("cookie",response.sessionId);
+      // Salva l'email dell'utente in localStorage
     })
     .catch(error => {
       console.error(error);
-      const errorMessage = error.response.data;
+      const errorMessage = error.message;
     if (errorMessage === 'Email not verified.') {
       setError('Email not verified');
-    } else {
+    } 
+    else if (errorMessage === 'Invalid username or password.') {
       setError('Invalid username or password');
     }
+    else if (errorMessage === 'User is already logged in.'){
+      setError('You are already logged in');
+    }
+    else if (error.response && error.response.data && error.response.data.error) {
+      setError(error.response.data.error);
+    }
+    
     });
   }
+
+  
+  
   
     
   
