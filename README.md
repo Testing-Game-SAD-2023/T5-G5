@@ -23,7 +23,7 @@ cd backend
  
 ### Nel caso spring desse errore stoppare con ctrl+c e rieseguire docker-compose up
 
-## :video_camera: Video Demo della Web Application
+## :video_camera: Video Demo della Application
 
 
 
@@ -47,7 +47,10 @@ Per eseguire la GUI su una porta diversa dalla 3000 modificare il primo docker-c
 ### Utente: root 
 ### Password: rootpassword
 3. I dati vengono inseriti sul database mysql
-## 
+## Integrazione
+- T6-G16: Ambiente di Editing
+- T1-G20: Repo delle classi
+##
 <p align="left">
 </p>
 
