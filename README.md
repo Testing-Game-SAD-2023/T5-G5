@@ -47,7 +47,7 @@ Per eseguire la GUI su una porta diversa dalla 3000 modificare il primo docker-c
 #### Utente: root 
 #### Password: rootpassword
 3. I dati vengono inseriti sul database mysql
-## Integrazione
+## :busts_in_silhouette: Integrazione
 - T6-G16: Ambiente di Editing
 - T1-G20: Repo delle classi
 ##
