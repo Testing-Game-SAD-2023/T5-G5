@@ -26,6 +26,9 @@ cd backend
  
 ### Nel caso spring desse errore stoppare con ctrl+c e rieseguire docker-compose up
 
+## :bookmark_tabs: La Documentazione
+E' possibile consultare la completa documentazione al seguente link <a title="Link al documento" href="link.pdf">
+:link: documento </a>
 
 ## :video_camera: Video Demo della Application
 https://github.com/Testing-Game-SAD-2023/T5-G5/assets/127510084/a9aa3b21-af95-4238-bc3c-32a62ccfbe0a
