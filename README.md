@@ -26,7 +26,7 @@ cd backend
 ## :video_camera: Video Demo della Web Application
 Si mostrano tutte le funzionalità implementate nella web application, dallo svolgimento del test fino alla gestione delle farmacie aderenti al sistema.
 
-file.mp4
+https://github.com/Testing-Game-SAD-2023/T5-G5/blob/main/VideoProva.mp4
 
 ## FAQ
 
