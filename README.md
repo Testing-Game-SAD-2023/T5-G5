@@ -9,12 +9,12 @@
 ```bash
 git clone https://github.com/Testing-Game-SAD-2023/T5-G5.git
 ```
-### aprire terminale e spostarsi nel path del repo con cd aggiungendo il percorso della cartella, eseguire in cmd
+### Aprire terminale e spostarsi nel path del repo con cd aggiungendo il percorso della cartella, eseguire in cmd
 ```bash
  docker build -t front .
  docker-compose up
 ```
-### Infine
+### Successivamente in un secondo terminale
 ```bash
 cd backend
  docker build -t back .
@@ -28,7 +28,7 @@ cd backend
 
 #### Come si può cambiare la porta in cui viene eseguito il progetto in react? 
 
-Per eseguire la GUI su una porta diversa dalla 3000 utilizzare il primo docker-compose.yml presente nel path T5-G5 e in ports cambiare il primo 3000 con la porta desiderata
+Per eseguire la GUI su una porta diversa dalla 3000 modificare il primo docker-compose.yml presente nel path T5-G5 e in ports cambiare il primo 3000 con la porta desiderata
 
 ## Additional Information
 ### Il frontend è in esecuzione su http://localhost:3000
