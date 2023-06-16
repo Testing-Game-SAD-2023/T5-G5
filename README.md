@@ -26,7 +26,7 @@ git clone https://github.com/Testing-Game-SAD-2023/T5-G5.git
 #### Nel caso spring desse errore stoppare con ctrl+c e rieseguire docker-compose up
 
 ## :bookmark_tabs: La Documentazione
-E' possibile consultare la completa documentazione al seguente link <a title="Link al documento" href="link.pdf">
+E' possibile consultare la completa documentazione al seguente link <a title="Link al documento" href="DocumentazioneSAD.pdf">
 :link: documento </a>
 
 ## :video_camera: Video Demo della Application
