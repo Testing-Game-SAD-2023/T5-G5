@@ -26,10 +26,10 @@ cd backend
  
 ### Nel caso spring desse errore stoppare con ctrl+c e rieseguire docker-compose up
 
+
 ## :video_camera: Video Demo della Application
+https://github.com/Testing-Game-SAD-2023/T5-G5/assets/127510084/a9aa3b21-af95-4238-bc3c-32a62ccfbe0a
 
-
-https://github.com/Testing-Game-SAD-2023/T5-G5/assets/127510084/fff4a8b3-a1a7-417b-be1f-d9d64b5bd408
 
 
 ## FAQ
