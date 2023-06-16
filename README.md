@@ -1,14 +1,15 @@
 <h1 align="left"> Guida Installazione su docker</h1>
 
 
-
-
-
-
+## Requisiti
+1. Docker
+2. WSL
+##
 
 ```bash
 git clone https://github.com/Testing-Game-SAD-2023/T5-G5.git
 ```
+### Aprire Docker
 ### Aprire terminale e spostarsi nel path del repo con cd aggiungendo il percorso della cartella, eseguire in cmd
 ```bash
  docker build -t front .
