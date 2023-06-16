@@ -9,10 +9,33 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.*;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
@@ -179,5 +202,204 @@ public class PlayerController {
             e.printStackTrace();
             return false;
         }
+    }
+
+
+
+
+    ///NUOVISSIMOOO
+
+/*
+    @PostMapping("/login22")
+    public ResponseEntity<String> login22(@RequestBody Player player, HttpServletRequest request, HttpServletResponse response) {
+        Player existingPlayer = playerService.findPlayerByEmail(player.getEmail());
+
+        if (existingPlayer == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password.");
+        }
+
+        if (!existingPlayer.isEmailVerified()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Email not verified.");
+        }
+        if (existingPlayer.isLoggedIn()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User is already logged in.");
+        }
+
+        if (playerService.authenticate(player.getEmail(), player.getPassword())) {
+            //Genera un nuovo ID di sessione
+            String sessionId = UUID.randomUUID().toString();
+            existingPlayer.setSessionId(sessionId);
+
+            //Imposta la data di scadenza della sessione
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.HOUR, 1);
+            Date sessionExpiry = calendar.getTime();
+            existingPlayer.setSessionExpiry(sessionExpiry);
+            existingPlayer.setLoggedIn(true);
+            playerService.savePlayer(existingPlayer);
+
+            //Crea un cookie di sessione contenente l'ID della sessione del giocatore e la data di scadenza
+            Cookie sessionCookie = new Cookie("sessionId", sessionId);
+            sessionCookie.setPath("/");
+            sessionCookie.setMaxAge((int) ((sessionExpiry.getTime() - System.currentTimeMillis()) / 1000));
+            sessionCookie.setHttpOnly(true);
+            response.addCookie(sessionCookie);
+
+            String email = existingPlayer.getEmail();
+            return ResponseEntity.ok(email);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password.");
+        }
+    }
+*/
+    //Aggiungi un filtro per verificare la validità del cookie di sessione in ogni richiesta
+    @Component
+    public class SessionFilter implements Filter {
+
+        @Autowired
+        private PlayerService playerService;
+
+        @Override
+        public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+            HttpServletRequest httpRequest = (HttpServletRequest) request;
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
+
+            Cookie[] cookies = httpRequest.getCookies();
+            if (cookies != null) {
+                String sessionId = null;
+                for (Cookie cookie : cookies) {
+                    if ("sessionId".equals(cookie.getName())) {
+                        sessionId = cookie.getValue();
+                        break;
+                    }
+                }
+
+                if (sessionId != null) {
+                    Player player = playerService.findPlayerBySessionId(sessionId);
+                    if (player != null && player.getSessionExpiry() != null && player.getSessionExpiry().before(new Date())) {
+                        //Elimina il cookie di sessione dal client
+                        Cookie sessionCookie = new Cookie("sessionId", "");
+                        sessionCookie.setPath("/");
+                        sessionCookie.setMaxAge(0);
+                        httpResponse.addCookie(sessionCookie);
+
+                        //Invalida la sessione del giocatore corrente
+                        player.setSessionId(null);
+                        player.setSessionExpiry(null);
+                        player.setLoggedIn(false);
+                        playerService.savePlayer(player);
+                    }
+                    else if (player != null) {
+                        //Aggiorna la data di scadenza della sessione
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.add(Calendar.HOUR, 1);
+                        Date sessionExpiry = calendar.getTime();
+                        player.setSessionExpiry(sessionExpiry);
+                        playerService.savePlayer(player);
+
+                        //Aggiorna il cookie di sessione
+                        Cookie sessionCookie = new Cookie("sessionId", sessionId);
+                        sessionCookie.setPath("/");
+                        sessionCookie.setMaxAge((int) ((sessionExpiry.getTime() - System.currentTimeMillis()) / 1000));
+                        sessionCookie.setHttpOnly(true);
+                        httpResponse.addCookie(sessionCookie);
+                    }
+                }
+            }
+
+            chain.doFilter(request, response);
+        }
+
+    }
+    @PostMapping("/login22")
+    public ResponseEntity<Map<String, String>> login22(@RequestBody Player player, HttpServletRequest request, HttpServletResponse response) {
+        Player existingPlayer = playerService.findPlayerByEmail(player.getEmail());
+
+        if (existingPlayer == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("error", "Invalid username or password."));
+        }
+
+        if (!existingPlayer.isEmailVerified()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("error", "Email not verified."));
+        }
+        if (existingPlayer.isLoggedIn()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("error", "User is already logged in."));
+        }
+
+        if (playerService.authenticate(player.getEmail(), player.getPassword())) {
+            //Genera un nuovo ID di sessione
+            String sessionId = UUID.randomUUID().toString();
+            existingPlayer.setSessionId(sessionId);
+
+            //Imposta la data di scadenza della sessione
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.HOUR, 1);
+            Date sessionExpiry = calendar.getTime();
+            existingPlayer.setSessionExpiry(sessionExpiry);
+            existingPlayer.setLoggedIn(true);
+            playerService.savePlayer(existingPlayer);
+
+            //Crea un cookie di sessione contenente l'ID della sessione del giocatore e la data di scadenza
+            Cookie sessionCookie = new Cookie("sessionId", sessionId);
+            sessionCookie.setPath("/");
+            sessionCookie.setMaxAge((int) ((sessionExpiry.getTime() - System.currentTimeMillis()) / 1000));
+            sessionCookie.setHttpOnly(true);
+            response.addCookie(sessionCookie);
+
+            //Aggiungi l'ID della sessione e l'email dell'utente alla risposta JSON
+            Map<String, String> responseBody = new HashMap<>();
+            responseBody.put("sessionId", sessionId);
+            responseBody.put("email", existingPlayer.getEmail());
+            return ResponseEntity.ok(responseBody);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("error", "Invalid username or password."));
+        }
+    }
+
+    //Utilizza il metodo logout nel controller per invalidare la sessione del giocatore
+   /* @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("sessionId".equals(cookie.getName())) {
+                    String sessionId = cookie.getValue();
+                    Player player = playerService.findPlayerBySessionId(sessionId);
+                    if (player != null) {
+                        //Invalida la sessione del giocatore corrente
+                        player.setSessionId(null);
+                        player.setSessionExpiry(null);
+                        player.setLoggedIn(false);
+                        playerService.savePlayer(player);
+                    }
+
+                    //Elimina il cookie di sessione
+                    cookie.setValue("");
+                    cookie.setPath("/");
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+
+                    return ResponseEntity.ok("Logout successful");
+                }
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not logged in");
+    }*/
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(@RequestParam("sessionId") String sessionId) {
+        Player player = playerService.findPlayerBySessionId(sessionId);
+        if (player != null) {
+            //Invalida la sessione del giocatore corrente
+            player.setSessionId(null);
+            player.setSessionExpiry(null);
+            player.setLoggedIn(false);
+            playerService.savePlayer(player);
+
+            return ResponseEntity.ok("Logout successful");
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not logged in");
     }
 }
