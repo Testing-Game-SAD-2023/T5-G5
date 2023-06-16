@@ -12,12 +12,12 @@
 git clone https://github.com/Testing-Game-SAD-2023/T5-G5.git
 ```
 
-#### Aprire terminale e spostarsi nel path del repo con cd aggiungendo il percorso della cartella, eseguire in cmd
+#### Aprire terminale e spostarsi nel path del repo con il comando cd, nella cartella main (dove è presente il dockerfile).
 ```bash
  docker build -t front .
  docker-compose up
 ```
-#### Successivamente in un secondo terminale
+#### Successivamente spostarsi nella cartella backend (dove è presente un altro docker file).
 ```bash
 cd backend
  docker build -t back .
