@@ -49,13 +49,41 @@ function Home() {
     localStorage.setItem('selectedClass', className);
     //window.location.href = "http://localhost:8190/myapp?myParam=" + encodeURIComponent(className);
   };
-
+/*
   const handleLogout = () => {
     localStorage.removeItem('email');
     localStorage.removeItem('token');
     navigate('/');
   };
+*/
 
+const handleLogout = () => {
+  const sessionId = localStorage.getItem('sessionId');
+
+  fetch(`http://localhost:8080/player/logout?sessionId=${sessionId}`, {
+method: 'POST',
+headers: {
+  'Content-Type': 'application/json',
+  'Cookie': `sessionId=${sessionId}` // aggiungi l'ID della sessione come cookie
+},
+body: null // passa null come corpo della richiesta
+})
+.then(response => {
+if (!response.ok) {
+  throw new Error(response.statusText);
+}
+localStorage.removeItem('email');
+localStorage.removeItem('sessionId');
+navigate('/');
+})
+.catch(error => {
+console.error(error);
+const errorMessage = error.message;
+if (errorMessage === 'Not logged in') {
+  
+}
+});
+};
   const handleRobotSelect = (robotName) => {
     setSelectedRobot(robotName);
   };
@@ -147,6 +175,35 @@ useEffect(() => {
     { name: 'Randoop', icon: faRobot },
     { name: 'Evosuite', icon: faRobot }
   ];
+
+  
+  useEffect(() => {
+    
+    const handleBeforeUnload = (e) => {
+      const sessionId = localStorage.getItem('sessionId');
+      fetch(`http://localhost:8080/player/logout?sessionId=${sessionId}`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Cookie': `sessionId=${sessionId}` // aggiungi l'ID della sessione come cookie
+  },
+  body: null // passa null come corpo della richiesta
+})
+        .then(response => {
+          console.log('API call successful');
+        })
+        .catch(error => {
+          console.log('API call failed', error);
+        });
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   if (!email) {
     return (
@@ -246,15 +303,11 @@ useEffect(() => {
         </Row>
       </Container>
       <div className="navigation">
-        <Button variant="link" href="/mod" className="navigation-button">
-          <FontAwesomeIcon icon={faArrowLeft} style={{ color: 'black' }} />
-        </Button>
+       
         <Button variant="primary" size="md" className="confirm-button" onClick={handleConfirm}>
           Conferma selezione
         </Button>
-        <Button variant="link" href="/about" className="navigation-button">
-          <FontAwesomeIcon icon={faArrowRight} style={{ color: 'black' }} />
-        </Button>
+        
       </div>
     </div>
   );

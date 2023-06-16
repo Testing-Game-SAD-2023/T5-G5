@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Form, Navbar, Dropdown, Modal, ListGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Modalita.css';
 import './aggiunta.css'
 function Modalita() {
@@ -161,13 +162,69 @@ useEffect(() => {
     setNumTurns(num);
     localStorage.setItem('numTurns', num);
   };
-
+/*
   const handleLogout = () => {
     localStorage.removeItem('id');
     localStorage.removeItem('email');
     localStorage.removeItem('token');
     navigate('/');
   };
+  */
+  const handleLogout = () => {
+    const sessionId = localStorage.getItem('sessionId');
+  
+    fetch(`http://localhost:8080/player/logout?sessionId=${sessionId}`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Cookie': `sessionId=${sessionId}` // aggiungi l'ID della sessione come cookie
+  },
+  body: null // passa null come corpo della richiesta
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  localStorage.removeItem('email');
+  localStorage.removeItem('sessionId');
+  navigate('/');
+})
+.catch(error => {
+  console.error(error);
+  const errorMessage = error.message;
+  if (errorMessage === 'Not logged in') {
+    setError('You are not logged in');
+  }
+});
+  };
+
+  useEffect(() => {
+    
+    const handleBeforeUnload = (e) => {
+      const sessionId = localStorage.getItem('sessionId');
+      fetch(`http://localhost:8080/player/logout?sessionId=${sessionId}`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Cookie': `sessionId=${sessionId}` // aggiungi l'ID della sessione come cookie
+  },
+  body: null // passa null come corpo della richiesta
+})
+        .then(response => {
+          console.log('API call successful');
+        })
+        .catch(error => {
+          console.log('API call failed', error);
+        });
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   const handleStartGame = () => {
     localStorage.setItem('selectedTurn', numTurns);

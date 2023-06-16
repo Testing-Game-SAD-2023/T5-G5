@@ -81,12 +81,40 @@ function Home() {
   }, []);
 
 
-
+/*
   const handleLogout = () => {
     localStorage.removeItem('id');
     localStorage.removeItem('email');
     localStorage.removeItem('token');
     navigate('/');
+  };*/
+
+  const handleLogout = () => {
+    const sessionId = localStorage.getItem('sessionId');
+  
+    fetch(`http://localhost:8080/player/logout?sessionId=${sessionId}`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Cookie': `sessionId=${sessionId}` // aggiungi l'ID della sessione come cookie
+  },
+  body: null // passa null come corpo della richiesta
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  localStorage.removeItem('email');
+  localStorage.removeItem('sessionId');
+  navigate('/');
+})
+.catch(error => {
+  console.error(error);
+  const errorMessage = error.message;
+  if (errorMessage === 'Not logged in') {
+    
+  }
+});
   };
 
   const handleToggleDropdown = () => {
@@ -373,6 +401,33 @@ const memo=localStorage.getItem('recipientid');
     { name: 'Evosuite', icon: faRobot }
   ];
 
+  useEffect(() => {
+    
+    const handleBeforeUnload = (e) => {
+      const sessionId = localStorage.getItem('sessionId');
+      fetch(`http://localhost:8080/player/logout?sessionId=${sessionId}`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Cookie': `sessionId=${sessionId}` // aggiungi l'ID della sessione come cookie
+  },
+  body: null // passa null come corpo della richiesta
+})
+        .then(response => {
+          console.log('API call successful');
+        })
+        .catch(error => {
+          console.log('API call failed', error);
+        });
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
   if (!email) {
     return (
       <div>Accesso proibito. Esegui il login per accedere a questa pagina.</div>
@@ -490,17 +545,13 @@ const memo=localStorage.getItem('recipientid');
       </Container>
       <footer className="mt-4 py-3 bg-light text-center">
         <div className="navigation">
-          <a href="/mod">
-            <FontAwesomeIcon icon={faArrowLeft} style={{ color: 'black' }} />
-          </a>
+          
           <Button variant="primary" size="md" className="confirm-button" onClick={handleConfirm}>
             
   Conferma selezione
 
 </Button>
-          <a href="/about">
-            <FontAwesomeIcon icon={faArrowRight} style={{ color: 'black' }} />
-          </a>
+          
         </div>
       </footer>
       <Modal show={showInviteModal} onHide={handleInviteModalClose}>
