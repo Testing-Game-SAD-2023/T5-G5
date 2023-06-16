@@ -54,4 +54,8 @@ public class PlayerServiceImpl implements PlayerService {
     public void deletePlayerById(int id) {
         playerRepository.deleteById(id);
     }
+//aggiunto ora
+    public Player findPlayerBySessionId(String sessionId) {
+        return playerRepository.findBySessionId(sessionId);
+    }
 }

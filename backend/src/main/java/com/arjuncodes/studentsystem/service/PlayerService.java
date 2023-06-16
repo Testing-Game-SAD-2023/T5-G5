@@ -17,4 +17,6 @@ public interface PlayerService {
 
     void deletePlayerById(int id);
     public Player findPlayerByEmail(String email);
+
+    public Player findPlayerBySessionId(String sessionId);
 }
