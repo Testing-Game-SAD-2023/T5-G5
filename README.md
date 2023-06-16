@@ -31,8 +31,8 @@ cd backend
 Per eseguire la GUI su una porta diversa dalla 3000 modificare il primo docker-compose.yml presente nel path T5-G5 e in ports cambiare il primo 3000 con la porta desiderata
 
 ## Additional Information
-# Il frontend è in esecuzione su http://localhost:3000
-### Su http://localhost:9000 è presente un adminer per gestione database, per accedervi:
+ Il frontend è in esecuzione su http://localhost:3000
+1. Su http://localhost:9000 è presente un adminer per gestione database, per accedervi:
 ### Utente: root 
 ### Password: rootpassword
 ### I dati vengono inseriti sul database mysql
