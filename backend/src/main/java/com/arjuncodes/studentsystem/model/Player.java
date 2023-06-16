@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Player {
@@ -17,6 +18,36 @@ public class Player {
     private String password;
     private boolean isEmailVerified;
     private String token;
+    private Date sessionExpiry;
+    private String sessionId;
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    private boolean loggedIn;
+
+    public Date getSessionExpiry() {
+        return sessionExpiry;
+    }
+
+    public void setSessionExpiry(Date sessionExpiry) {
+        this.sessionExpiry = sessionExpiry;
+    }
+
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
 
     public boolean isEmailVerified() {
         return isEmailVerified;
