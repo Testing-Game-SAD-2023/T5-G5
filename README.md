@@ -17,7 +17,7 @@ git clone https://github.com/Testing-Game-SAD-2023/T5-G5.git
  docker build -t front .
  docker-compose up
 ```
-#### Successivamente spostarsi nella cartella backend (dove è presente un altro docker file).
+#### Successivamente spostarsi nella cartella backend (dove è presente un altro docker file, utilizzando un altro terminale).
 ```bash
  docker build -t back .
  docker-compose up
