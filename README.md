@@ -27,7 +27,7 @@ git clone https://github.com/Testing-Game-SAD-2023/T5-G5.git
 
 ## :bookmark_tabs: La Documentazione
 E' possibile consultare la completa documentazione al seguente link <a title="Link al documento" href="DocumentazioneSAD.pdf">
-:link: documento </a>
+:link: Documentazione </a>
 
 
 E' possibile consultare la completa documentazione delle 🐝 al seguente link <a title="Link al documento" href="https://app.swaggerhub.com/apis-docs/ANGELOCRISTIANO1999/SAD-T5-G5/1.0.0"> :link: API </a>
