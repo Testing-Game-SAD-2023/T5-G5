@@ -30,7 +30,7 @@ E' possibile consultare la completa documentazione al seguente link <a title="Li
 :link: documento </a>
 
 
-E' possibile consultare la completa documentazione delle API al seguente link <a title="Link al documento" href="https://app.swaggerhub.com/apis-docs/ANGELOCRISTIANO1999/SAD-T5-G5/1.0.0"> :link: documento </a>
+E' possibile consultare la completa documentazione delle 🐝 al seguente link <a title="Link al documento" href="https://app.swaggerhub.com/apis-docs/ANGELOCRISTIANO1999/SAD-T5-G5/1.0.0"> :link: documento </a>
 
 ## :video_camera: Video Demo della Application
 https://github.com/Testing-Game-SAD-2023/T5-G5/assets/127510084/a9aa3b21-af95-4238-bc3c-32a62ccfbe0a
